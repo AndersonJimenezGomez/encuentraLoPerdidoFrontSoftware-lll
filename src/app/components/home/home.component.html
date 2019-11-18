@@ -1,0 +1,40 @@
+<div class="jumbotron">
+    <h2 class="display-6">Bienvenido</h2>
+    <p class="lead">Esta es una aplicación web para publicar o buscar objetos perdidos y encontrados</p>
+    <a class="btn btn-primary" [routerLink]="['/registro-publicacion']">Nueva publicacion</a>
+
+    <hr class="my-4">
+</div>
+<div class="card">
+    <div class="card-header">
+
+    </div>
+
+
+    <div class="alert alert-warning" role="alert" *ngIf="publicaciones.length == 0">
+        No hay publicaciones realizadas
+    </div>
+    <div class="container-fluid">
+        <div *ngIf="publicaciones.length> 0">
+            <h2>Aqui encuentras algunas de las publicaciones</h2>
+
+            <div class="row">
+                <tr *ngFor="let publicacion of publicaciones">
+                    <div class="col-sm-6">
+                        <div class="card" style="width: 18rem;">
+                            <div>
+                                <img src="src/assets/images/perdido.jpg" width="200" height="200" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Publicacion de Objeto:{{publicacion.tipoPublicacion.tipoPublicacion}}</h5>
+                                <p class="card-text">Descripcion: {{publicacion.objetos.descripcion}}</p>
+                                <p class="card-text">Publicado el: {{publicacion.fecha}}</p>
+                                <!-- <p class="card-text">Categoria: {{publicacion.categorias.categoria}}</p>-->
+                                <a href="" class="btn btn-primary">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+    </div>

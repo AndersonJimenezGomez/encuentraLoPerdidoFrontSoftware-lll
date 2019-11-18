@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+
+      <div class="alert alert-warning" role="alert" *ngIf="objetos.length == 0">
+        No hay objetos registrados
+      </div>
+
+      <div *ngIf="objetos.length> 0">
+        <div class="container">
+          <h3>Objetos</h3>
+        </div>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Fecha Perdido/Encontrado</th>
+                <th scope="col">Lugar</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let objeto of objetos">
+              <th scope="row">{{objeto.id}}</th>
+              <td>{{objeto.descripcion|uppercase}}</td>
+              <td>{{objeto.fecha|uppercase}}</td>
+              <td>{{objeto.lugar|uppercase}}</td>
+
+
+
+              <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#EditModal" data-whatever="@mdo" (click)="ShowPopup(persona)">Editar</button>
+              <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" (click)="ShowPopup(persona)">Eliminar</button>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </blockquote>
+  </div>
+</div>

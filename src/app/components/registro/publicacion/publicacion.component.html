@@ -1,0 +1,54 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/listar">Listar</a></li>
+    <li class="breadcrumb-item active" aria-current="page">crear</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    Registrar Objeto "Perdido" o "Encontrado"
+  </div>
+  <div class="card-body">
+    <p>Favor diligenciar el formulario</p>
+    <form (ngSubmit)="insert()" #publicacionForm="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="descripcion">Descripcion</label>
+          <input type="text" class="form-control" id="descripcion" placeholder="descripcion"
+            [(ngModel)]="publicacion.descripcion" name="descripcion" required minlength="30" 
+            #descripcion="ngModel">
+          <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+            <div *ngIf="descripcion.errors.required">La descripcion es requerida</div>
+            <div *ngIf="descripcion.errors.minlength">La descripcion debe contener al menos 30 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-7">
+            <label for="fecha">Fecha</label>
+            <input type="text" class="form-control" id="fecha" placeholder="fecha"
+              [(ngModel)]="publicacion.fecha" name="fecha" required minlength="8" 
+              #fecha="ngModel">
+            <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+              <div *ngIf="fecha.errors.required">La fecha es requerida</div>
+              <div *ngIf="fecha.errors.minlength">La fecha debe contener al menos 8 caracteres</div>
+            </div>
+          </div>
+       
+
+        <div class="form-group col-md-6">
+            <label for="tipoPublicacion">Tipo publicacion</label>
+            <select class="form-control" id="tipoPublicacion" name="tipoPublicacion" 
+            [(ngModel)]="tipoPublicacion.id" required #tipo
+            [(ngModel)]="tipoPublicacion.tipoPublicacion" required #tipo1>
+                    <option>--Seleccione--</option>
+                      <option *ngFor="let tipo of tipoPublicaciones" [ngValue]="tipo">{{tipo.tipoPublicacion}}</option>
+                  </select>
+        </div>
+      
+        
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!publicacionForm.form.valid">Registrar</button>
+    </form>
+  </div>
+</div>
